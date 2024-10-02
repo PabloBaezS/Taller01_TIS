@@ -1,0 +1,13 @@
+<!-- templates/comments/comment_list.html -->
+<h2>Comentarios</h2>
+<ul>
+    {% for comment in comments %}
+        <li>
+            <strong>{{ comment.user.username }}</strong> ({{ comment.created_at }}):
+            <p>{{ comment.content }}</p>
+        </li>
+    {% empty %}
+        <li>No hay comentarios aún.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_comment' %}">Añadir un comentario</a>

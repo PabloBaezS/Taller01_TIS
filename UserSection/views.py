@@ -9,6 +9,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import SignUpForm
 from .models import CustomUser
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from .models import Comment
+from .forms import CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .observers import notify_admin_new_comment
 
 
 class SignUpView(View):
@@ -177,4 +183,25 @@ def driver_vehicle_info(request):
 
     return render(request, 'vehicle.html', {'message': message})
 
+
+class CommentListView(ListView):
+    model = Comment
+    template_name = 'comments/comment_list.html'
+    context_object_name = 'comments'
+    ordering = ['-created_at']
+
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'comments/add_comment.html'
+    success_url = reverse_lazy('comment_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        response = super().form_valid(form)
+
+        # Notificar cuando se agregue un nuevo comentario (Observer)
+        notify_admin_new_comment(self.object)
+        return response
 

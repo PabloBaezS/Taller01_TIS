@@ -3,6 +3,9 @@ from .models import CustomUser, Passenger, Driver
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
+from django import forms
+from .models import Comment
+
 
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=100)
@@ -40,3 +43,12 @@ class LoginForm(AuthenticationForm):
                 "This account is inactive.",
                 code='inactive',
             )
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 3}),
+        }

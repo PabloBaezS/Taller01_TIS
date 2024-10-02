@@ -7,7 +7,7 @@ import random
 from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginForm
 from .models import CustomUser
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
@@ -88,19 +88,22 @@ def logoutAccount(request):
 @ensure_csrf_cookie
 def loginAccount(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            # Authentication successful, log the user in
-            login(request, user)
-            return render(request, 'dashboard.html')  # Replace 'dashboard' with the URL name for the dashboard page
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('dashboard')  # Redirige al dashboard si el login es exitoso
+            else:
+                # Usuario no autenticado
+                return render(request, 'login.html', {'form': form, 'error': 'Invalid credentials'})
         else:
-            # Authentication failed, show an error message
-            error_message = "Invalid username or password."
-            return render(request, 'login.html', {'error_message': error_message})
+            return render(request, 'login.html', {'form': form, 'error': 'Form is not valid'})
     else:
-        return render(request, 'login.html')
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
 
 
 def index(request):

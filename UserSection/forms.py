@@ -1,12 +1,8 @@
-from django.contrib.auth.forms import AuthenticationForm
-from .models import CustomUser, Passenger, Driver
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
-from django import forms
-from .models import Comment
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .models import CustomUser, Comment
 
-
+# Formulario de registro
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=100)
     email = forms.EmailField(max_length=100)
@@ -25,17 +21,13 @@ class SignUpForm(UserCreationForm):
         user.homeAddress = self.cleaned_data['homeAddress']
         if commit:
             user.save()
-            '''# Create related Driver instance
-            driver = Driver.objects.create(customuser_ptr=user, rate=0, driverLicense='')
-
-            # Create related Passenger instance
-            passenger = Passenger.objects.create(customuser_ptr=user, location='')'''
-
         return user
 
 
+# Formulario de login
 class LoginForm(AuthenticationForm):
-    username = forms.EmailField(widget=forms.EmailInput(attrs={'autofocus': True}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'autofocus': True}))  # Captura el username
+    password = forms.CharField(widget=forms.PasswordInput)  # Captura la password
 
     def confirm_login_allowed(self, user):
         if not user.is_active:
@@ -44,7 +36,7 @@ class LoginForm(AuthenticationForm):
                 code='inactive',
             )
 
-
+# Formulario para comentarios
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

@@ -1,27 +1,58 @@
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from .forms import SignUpForm
-from django.shortcuts import render, redirect
-from .models import Vehicle, CustomUser, Passenger, Driver
+from .models import Vehicle, Passenger, Driver
 from django.views.decorators.csrf import ensure_csrf_cookie
 import random
 
+# UserSection/views.py
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from .models import UserFactory
+from .forms import SignUpForm
 
 
 def signupAccount(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            user = form.save()
+            user_data = form.cleaned_data
+            user_type = 'custom'  # Hardcoded for now, but can be dynamic.
+
+            # Use the UserFactory to create the user
+            user = UserFactory.create_user(user_type, user_data)
+
+            # Log in the newly created user
             login(request, user)
-            return render(request,'dashboard.html')
+
+            return render(request, 'dashboard.html')
     else:
         form = SignUpForm()
+
     return render(request, 'signup.html', {'form': form})
+
+
+'''def signupAccount(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            # Obtén los datos limpios del formulario
+            user_data = form.cleaned_data
+
+            # Inyectamos la abstracción, en este caso, CustomUser que implementa AbstractUser
+            user: AbstractUser = CustomUser()
+
+            # Guardamos el usuario a través de la abstracción
+            user.save_user(user_data)
+
+            # Iniciamos sesión para el usuario recién creado
+            login(request, user)
+
+            return render(request, 'dashboard.html')
+    else:
+        form = SignUpForm()
+
+    return render(request, 'signup.html', {'form': form})'''
 
 
 @login_required
@@ -127,3 +158,5 @@ def driver_vehicle_info(request):
         message = "Vehicle information saved successfully!"
 
     return render(request, 'vehicle.html', {'message': message})
+
+

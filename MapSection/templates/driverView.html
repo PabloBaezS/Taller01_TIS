@@ -1,0 +1,41 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="origin">Origin:</label>
+        <input type="text" name="origin" required>
+        <br>
+        <label for="destination">Destination:</label>
+        <input type="text" name="destination" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <a href="{% url 'driver_vehicle_info' %}">
+        <button type="submit" class="btn btn-primary">Save Vehicle Information</button>
+    </a>
+</div>
+<br>
+<br>
+<style>
+    #map-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px; /* Adjust as needed */
+    }
+
+    #map-frame {
+        width: 800px; /* Adjust as needed */
+        height: 600px; /* Adjust as needed */
+    }
+</style>
+<div id="map-container">
+    <iframe id="map-frame" src="{% static 'route.html' %}"></iframe>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJ_KORpCWjJT8tP4N7L6VSRoHPHUTXFg&callback=initMap"></script>
+{% endblock %}

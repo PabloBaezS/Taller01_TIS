@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Welcome to Your Dashboard</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h3>Passenger</h3>
+            <p style="text-align: center">Choose this option if you want to find rides and travel as a passenger.</p>
+            <a href="{% url 'passenger_view' %}" class="btn btn-primary">Go to Passenger Dashboard</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h3>Driver</h3>
+            <p style="text-align: center">Choose this option if you want to offer rides and drive as a driver.</p>
+            <a href="{% url 'driver_view' %}" class="btn btn-primary">Go to Driver Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <h2>Your Personal Information</h2>
+    <p>Name: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Phone: {{ user.phone }}</p>
+    <p>Home Address: {{ user.homeAddress }}</p>
+  </div>
+{% endblock %}

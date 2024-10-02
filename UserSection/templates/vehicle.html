@@ -1,0 +1,33 @@
+{% extends 'base2.html' %}
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+
+{% block content %}
+  <div class="container">
+    <h1>Driver Vehicle Information</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="model" style="color: black">Vehicle Model:</label>
+        <input type="text" class="form-control" id="model" name="model" required>
+      </div>
+      <div class="form-group">
+        <label for="licensePlate" style="color: black">License Plate:</label>
+        <input type="text" class="form-control" id="licensePlate" name="licensePlate" required>
+      </div>
+      <div class="form-group">
+        <label for="color" style="color: black">Vehicle Color:</label>
+        <input type="text" class="form-control" id="color" name="color" required>
+      </div>
+      <div class="form-group">
+        <label for="capacity" style="color: black">Vehicle Capacity:</label>
+        <input type="number" class="form-control" id="capacity" name="capacity" required>
+      </div>
+      <br>
+      <br>
+      <button type="submit" class="btn btn-primary">Save Vehicle Information</button>
+    </form>
+  </div>
+{% endblock %}

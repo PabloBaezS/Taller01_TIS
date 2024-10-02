@@ -1,0 +1,9 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Location Saved Successfully</h1>
+    <!-- Display any success message or additional content -->
+    <a href="{% url 'save_location' %}" class="btn btn-primary">Go Back to Passenger View</a>
+  </div>
+{% endblock %}

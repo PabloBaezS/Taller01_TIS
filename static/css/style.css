@@ -1,0 +1,277 @@
+.images {
+  display: flex;
+  justify-content: space-between;
+}
+
+.images img {
+  width: 45%;
+  border: 5px solid rgb(225, 80, 91);
+}
+
+.nav {
+  background-color: white;
+  height: 144px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px;
+  text-align: center;
+  border-bottom: 5px solid rgb(225, 80, 91);
+}
+
+.logo {
+  width: 144px;
+  height: 144px;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nav-links a {
+  color: black;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+/* Estilos para la página de inicio */
+body {
+  background-color: rgb(40, 38, 51);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+/* Estilos para el formulario de login */
+
+.login-form {
+  margin-top: 40px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form input[type="hoomeAddress"],
+.login-form input[type="phone"]{
+  display: block;
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  resize: none; /* Add this line to prevent resizing of the text boxes */
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.login-form button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #e1505b;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #c53842;
+}
+
+.login-form .alert {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #f7d7d7;
+  color: #a94442;
+  border: 1px solid #eed3d7;
+  border-radius: 4px;
+}
+
+/* Estilo para la seccion de registro */
+.form-container {
+  margin: auto;
+  width: 100%; /* Modify this line to occupy the full width of the container */
+  max-width: 500px; /* Add this line to limit the width to 500px */
+}
+
+form {
+  margin: 50px auto;
+  padding: 20px;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  color: #e1505b;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #f7f7f7;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+p {
+  color: lightslategray;
+  text-align: justify;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+ul {
+  color: deeppink;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="homeAddress"],
+input[type="phone"]{
+  display: block;
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  align-content: center;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 6px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #e1505b;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-login {
+  color: black;
+  background-color: white;
+}
+
+.button-signup {
+  color: white;
+  background-color: rgb(225, 80, 91);
+}
+
+.error {
+  color: #f00;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.logos a {
+  border: 5px solid rgb(225, 80, 91);
+  padding: 10px;
+}
+
+.boton-centralizado {
+  display: block;
+  margin: 0 auto;
+  font-size: 25px;
+  padding: 10px 20px;
+  background-color: rgb(225,80,91);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Additional styles */
+.images {
+  display: flex;
+  justify-content: space-between;
+}
+
+.images img {
+  width: 45%;
+  border: 5px solid rgb(225, 80, 91);
+}
+
+.invalid-email-alert {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 10px;
+  }
+  .form-container {
+    width: 90%;
+  }
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #e1505b;
+}
+
+.btn-primary:hover {
+  background-color: #c53842;
+}
+

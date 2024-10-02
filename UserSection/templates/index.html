@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Welcome to PoolMate</h1>
+    <h2>No stress, ride safe!</h2>
+    <div class="images">
+    <img src="{% static 'images/image1.jpg' %}" alt="Imagen 1">
+    <img src="{% static 'images/image2.jpg' %}" alt="Imagen 2">
+    </div>
+{% endblock %}

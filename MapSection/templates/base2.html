@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}PoolMate{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJ_KORpCWjJT8tP4N7L6VSRoHPHUTXFg"></script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/logo-black.png' %}" alt="poolmate logo">
+            </a>
+        </div>
+        <div class="nav-links">
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <a href="{% url 'PoolMate' %}" >PoolMate</a>
+                <a href="{% url 'security' %}" >Security</a>
+            </div>
+                <a href="{% url 'dashboard' %}" class="button button-profile">Profile</a>
+                <a href="{% url 'logoutAccount' %}" class="button button-logout">Logout</a>
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

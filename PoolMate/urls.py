@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from UserSection.views import index, loginAccount, signupAccount, logoutAccount, security, PoolMate, dashboard, driver_vehicle_info
+from UserSection.views import index, loginAccount, signupAccount, logoutAccount, \
+    security, PoolMate, dashboard, driver_vehicle_info, SignUpView
 from MapSection.views import driver_view, save_route, save_location, passenger_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/', signupAccount, name='signup'),
+    path('signup/', SignUpView.as_view(), name='signup'),
     path('logoutAccount/', logoutAccount, name='logoutAccount'),
     path('login/', loginAccount, name='login'),
     path('', index, name='index'),

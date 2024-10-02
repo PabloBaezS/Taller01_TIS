@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from UserSection.views import index, loginAccount, signupAccount, logoutAccount, \
-    security, PoolMate, dashboard, driver_vehicle_info, SignUpView
-from .views import CommentListView, CommentCreateView
+from UserSection.views import index, loginAccount, logoutAccount, \
+    security, PoolMate, dashboard, driver_vehicle_info, SignUpView, \
+    CommentListView, CommentCreateView
 from MapSection.views import driver_view, save_route, save_location, passenger_view
 
 urlpatterns = [

@@ -23,6 +23,12 @@
         </div>
       </div>
     </div>
+        <!-- Sección de enlaces para los comentarios -->
+<br>
+  <h2>Comments Section</h2>
+    <a href="{% url 'comment_list' %}" class="btn btn-primary" style="margin-right: 10px;">Ver comentarios</a>
+    <a href="{% url 'add_comment' %}" class="btn btn-primary">Añadir un comentario</a>
+  </div>
     <br>
     <h2>Your Personal Information</h2>
     <p>Name: {{ user.username }}</p>
@@ -30,10 +36,5 @@
     <p>Phone: {{ user.phone }}</p>
     <p>Home Address: {{ user.homeAddress }}</p>
 
-    <!-- Sección de enlaces para los comentarios -->
-    <br>
-    <h2>Comments Section</h2>
-    <a href="{% url 'comment_list' %}" class="btn btn-info">Ver comentarios</a>
-    <a href="{% url 'add_comment' %}" class="btn btn-success">Añadir un comentario</a>
-  </div>
+
 {% endblock %}

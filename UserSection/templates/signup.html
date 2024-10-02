@@ -13,7 +13,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         <h1 style="color: rgb(225,80,91)">Registration</h1>
-                        {{ form.as_p }}
+                        {{ form.as_p }} <!-- Aquí se asegura que los campos username, email, password aparezcan -->
                         <div class="form-group">
                             <button type="submit" class="btn register">Register</button>
                         </div>

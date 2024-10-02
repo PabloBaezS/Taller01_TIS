@@ -22,7 +22,7 @@ class AbstractVehicle(ABC):
     def save_vehicle(self, vehicle_data):
         pass
 
-# UserSection/models.py
+'''
 class CustomUser(AbstractUser, DjangoAbstractUser):
     # Campos adicionales
     phone = models.CharField(max_length=20)
@@ -33,7 +33,7 @@ class CustomUser(AbstractUser, DjangoAbstractUser):
         self.username = user_data.get('username')
         self.email = user_data.get('email')
         self.save()
-
+'''
 # Clase concreta para vehículo
 class Vehicle(AbstractVehicle):
     license_plate = models.CharField(max_length=10)
@@ -79,3 +79,21 @@ class UserFactory:
         # Call the method to save the user data
         user.save_user(user_data)
         return user
+
+
+class Address(models.Model):
+    street = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.street}, {self.city}"
+
+class CustomUser(AbstractUser):
+    phone = models.CharField(max_length=20)
+    address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def save_user(self, user_data):
+        self.username = user_data.get('username')
+        self.email = user_data.get('email')
+        self.save()

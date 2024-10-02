@@ -4,15 +4,33 @@ from django.contrib.auth import authenticate, login
 from .models import Vehicle, Passenger, Driver
 from django.views.decorators.csrf import ensure_csrf_cookie
 import random
-
-# UserSection/views.py
+from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .models import UserFactory
 from .forms import SignUpForm
+from .models import CustomUser
 
 
-def signupAccount(request):
+class SignUpView(View):
+    form_class = SignUpForm
+    template_name = 'signup.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user_data = form.cleaned_data
+            user = CustomUser()
+            user.save_user(user_data)
+            login(request, user)
+            return redirect('dashboard')
+        return render(request, self.template_name, {'form': form})
+
+
+'''def signupAccount(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -32,7 +50,7 @@ def signupAccount(request):
     return render(request, 'signup.html', {'form': form})
 
 
-'''def signupAccount(request):
+def signupAccount(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():

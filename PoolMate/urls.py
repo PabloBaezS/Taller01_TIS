@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from UserSection.views import index, loginAccount, signupAccount, logoutAccount, \
     security, PoolMate, dashboard, driver_vehicle_info, SignUpView
+from .views import CommentListView, CommentCreateView
 from MapSection.views import driver_view, save_route, save_location, passenger_view
 
 urlpatterns = [
@@ -33,4 +34,6 @@ urlpatterns = [
     path('passenger-view/', passenger_view, name='passenger_view'),
     path('save-location/', save_location, name='save_location'),
     path('vehicle-info/', driver_vehicle_info, name='driver_vehicle_info'),
+    path('comments/', CommentListView.as_view(), name='comment_list'),
+    path('comments/add/', CommentCreateView.as_view(), name='add_comment'),
 ]
